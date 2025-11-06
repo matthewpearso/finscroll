@@ -269,16 +269,11 @@ Your finished project should include:
 <summary>Past examples</summary>
 
 
-Need video from Pacis
-https://www.youtube.com/watch?v=d7x34FpXjvo
-
-
-
 - 2024
-	- Pacis [T.O.S. Lens](https://n-pacis.github.io/dig245-final/) browser [extension](https://chromewebstore.google.com/detail/tos-lens/ebogajndhffhemjpkopgldlfilccodgc) 
+	- Pacis [T.O.S. Lens](https://n-pacis.github.io/dig245-final/) browser [extension](https://chromewebstore.google.com/detail/tos-lens/ebogajndhffhemjpkopgldlfilccodgc) [video](https://www.youtube.com/watch?v=ooLNfVshvMw&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=2)
 	- Mel [DC Navigator](https://hello2006-debug.github.io/dig245-final/)
 	- Julia [Project Unsubscribe](https://siqjulia.github.io/dig245-final/)
-	- Whitney [Mudgy]()
+	- Whitney [Mudgy](https://www.youtube.com/watch?v=l58RiptOuhk&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=1)
 - 2023
     - David and Tyler [Fortune Generator](https://davidmhilton.github.io/dig245-final)
     - Yumna and Jeremy [Fly on the Wall](https://yuahmed.github.io/fly-on-the-wall/)
@@ -291,7 +286,7 @@ https://www.youtube.com/watch?v=d7x34FpXjvo
     - Lillian [Social Mediator](https://limilano.github.io/dig245-final/)
     - Kate [More Than a Number](https://katehynes.github.io/dig245-final/) ([video](https://www.youtube.com/watch?v=DVVDX7hq6ew&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=3))
     - Zoe [Diagnostic Survey Simulator](https://zoearen.github.io/dig245-final/) ([video](https://www.youtube.com/watch?v=57j6hTeJRvA&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=5))
-    - Bryce [Match Match Match](https://www.youtube.com/watch?v=bGqOcxWUBb4&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=4)†
+    - Bryce [Match Match Match](https://www.youtube.com/watch?v=bGqOcxWUBb4&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=4) 😿
     - Ethan [Demystify](https://etgeorge.github.io/dig245-final)
     - Francisco [Art? or Not!](https://francduartemar.github.io/dig245-final)
     - Gaby [Color Generator](https://gasanclimenti.github.io/dig245-final) ([video](https://www.youtube.com/watch?v=2-phHrgeIig&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK))
@@ -305,16 +300,14 @@ https://www.youtube.com/watch?v=d7x34FpXjvo
     - Henry [Davidson College Scavenger Hunt](https://hehowell.github.io/Davidson-College-Scavenger-Hunt)
 - 2020
     - Stine [The Scroll Calculator](https://github.com/stinilso/final-project)
-- 2015 
-    - Holly and Thy [Vena Cava](https://www.youtube.com/watch?v=cVvKgnIUAPQ&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=13)†    
-- 2012
-    - Micky [The Web on Drugs](https://www.youtube.com/watch?v=QlJSAPCggo8&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=15) browser extension    
-- 2011
-    - Dana [Giftorama](https://www.youtube.com/watch?v=10vWAl1tqDw&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=15)†    
+- Past 
+    - Holly and Thy [Vena Cava](https://www.youtube.com/watch?v=cVvKgnIUAPQ&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=13) 😿 2015
+    - Micky [The Web on Drugs](https://www.youtube.com/watch?v=QlJSAPCggo8&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=15) browser extension 2012 
+    - Dana [Giftorama](https://www.youtube.com/watch?v=10vWAl1tqDw&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=15) 😿 2011
+    - Jesse [Transient](https://www.youtube.com/watch?v=qdWQujr8--Y&list=PLhpnnpt3tw-RiiFG9p_OJgjAfH-6kyAIK&index=23) 😿 2010
 
 
-
-†not currently live
+😿 not currently live
 
 
 </details>
