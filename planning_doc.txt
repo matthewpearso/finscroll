@@ -1,0 +1,28 @@
+Metrics and Graphs to use:
+- Wage growth housing cost graph
+- number of workers per household over time
+- Mortgage burden visualization?
+- Wealth gap animation and scatterplot
+- median homebuyer age
+- median student loan amount
+- college vs non-college unemployment rates
+
+Step 1: Wage vs Housing Line Graph
+(Easiest and foundational)
+
+Step 2: Workers Per Household
+(more data cleanup, same chart type)
+
+Step 3: College vs Non-College Unemployment
+(two datasets, dual lines — good practice)
+
+Step 4: Median Homebuyer Age
+(cleaner dataset, simple)
+
+Step 5: Student Loan Amount
+(another simple line)
+Step 6: Mortgage Burden Calculation
+(you will compute monthly payment — new technical skill)
+
+Step 7: Wealth Gap Animation
+(hardest: animation + scatter or bar race)
