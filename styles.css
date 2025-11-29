@@ -1,12 +1,49 @@
 body {
+background-size: 40px 40px; 
+    background-image: repeating-linear-gradient(
+        0deg,
+        #425a8a,
+        #75A3FF 1px, 
+        transparent 1px, 
+        transparent 40px
+    ),
+    repeating-linear-gradient(
+        -90deg,
+        #425a8a, 
+        #75A3FF 1px, 
+        transparent 1px, 
+        transparent 40px 
+    );
+    
+    /* This is the key property */
+    background-attachment: fixed; /* */
+    
+    /* Ensure the body takes at least the full screen height */
+    min-height: 100vh; 
+    margin: 0; /* Remove default body margin */
+
+
   margin: 0;
   font-family: Arial, sans-serif;
   scroll-behavior: smooth;
   background-color: #75A3FF;
 }
 
+/* Apply the grid directly to the body element */
+
+/* Style your content container to sit above the background */
+#content-container {
+    position: relative;
+    z-index: 1; /* Ensures content is above the background */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay for readability */
+    padding: 20px;
+    color: white;
+}
+
+
+
 .panel {
-  height: 100vh;
+  height: 110vh;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -30,7 +67,7 @@ body {
 
 h1{
     font-family: "Konkhmer Sleokchher";
-    font-size: 96px;
+    font-size: 120px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -46,8 +83,14 @@ h2, p {
     font-weight: 400;
 }
 
-p {
-    font-size: 30px;
+.subheader {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.author{
+    margin-top: 10px;
+    font-size: 24px;
 }
 
 canvas {
