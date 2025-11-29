@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #75A3FF;
+}
+
+.panel {
+  height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.konkhmer-sleokchher-regular {
+  font-family: "Konkhmer Sleokchher", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.lora-serif {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1{
+    font-family: "Konkhmer Sleokchher";
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -4.8px;
+    margin: 0px;
+}
+
+h2, p {
+    color: white;
+    font-family: "Lora", serif;
+    font-size: 40px;
+    margin: 0px;
+    font-weight: 400;
+}
+
+p {
+    font-size: 30px;
+}
+
+canvas {
+  max-width: 700px;
+  width: 90%;
+  max-height: 400px;
+}
+
+.typewriter-text1 {
+  overflow: hidden; /* Hides text beyond the current width */
+  white-space: nowrap; /* Prevents text from wrapping */
+  width: 0; /* Starts with zero width */
+  border-right: 2px solid #ffffff; /* Cursor style */
+  animation: typing1 2s steps(40, end) forwards, blink-caret .5s step-end alternate;
+  animation-fill-mode: forwards;
+}
+
+.typewriter-text2 {
+  overflow: hidden; /* Hides text beyond the current width */
+  white-space: nowrap; /* Prevents text from wrapping */
+  width: 0; /* Starts with zero width */
+  border-right: 2px solid #ffffff; /* Cursor style */
+  animation: typing2 2s steps(40, end) forwards, blink-caret .5s step-end alternate;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes typing1 {
+  from { width: 0; }
+  to { width: 69%; } /* Or a specific width like 9em */
+}
+
+@keyframes typing2 {
+  from { width: 0; }
+  to { width: 29%; } /* Or a specific width like 9em */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #ffffff; } /* Or your desired cursor color */
+}
