@@ -1,20 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- meta tags, links to css, etc. -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Final Project</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finscroll</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- visible content goes here -->
-	<h1>Final Project</h1>
-	<p>See README.md for info</p>
+  <!-- INTRO SECTION -->
+  <section class="panel" id="intro">
+    <h1>FINSCROLL<svg xmlns="http://www.w3.org/2000/svg" width="131" height="93" viewBox="0 0 131 93" fill="none">
+        <path d="M130.643 92.5C130.643 77.0351 126.766 61.817 119.366 48.2376C111.966 34.6582 101.279 23.1509 88.2831 14.7681C75.2872 6.38533 60.397 1.39468 44.9744 0.25261C29.5517 -0.889461 14.0888 1.85349 -1.80999e-05 8.2306L38.1433 92.5H130.643Z" fill="white"/>
+        </svg>
+    </h1>
+    <p class="typewriter-text1" style="margin-bottom: 30px;">A visualization of the U.S. affordability crisis.</p>
+    <p class="typewriter-text2" style="animation-delay: 2s; font-size: 20px;">Created by Matthew Pearson</p>
+</section>
 
-    <!-- load javascript after the page elements render -->
-    <script src="assets/js/main.js"></script>
+  <!-- WAGE VS HOUSING CHART -->
+  <section class="panel" id="wageHousing">
+    <h2>Wages vs Housing Prices</h2>
+    <canvas id="wageHousingChart"></canvas>
+  </section>
+
+  <!-- FUTURE PANELS -->
+  <section class="panel" id="workersPerHousehold">
+    <h2>Workers Per Household</h2>
+    <canvas id="workersChart"></canvas>
+  </section>
+
+  <section class="panel" id="mortgageBurden">
+    <h2>Mortgage Burden Over Time</h2>
+    <canvas id="mortgageChart"></canvas>
+  </section>
+
+  <script src="main.js"></script>
 </body>
 </html>
