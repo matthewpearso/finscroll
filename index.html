@@ -18,6 +18,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- load main as a module -->
+    <script type="module" src="src/main.js"></script>
 </head>
 
 <body>
@@ -35,7 +37,7 @@
   <!-- WAGE VS HOUSING CHART -->
   <section class="panel" id="wageHousing">
     <h2>Wages vs Housing Prices</h2>
-    <canvas id="wageHousingChart"></canvas>
+    <canvas id="wageHousingChart" style="margin-top: 40px;"></canvas>
   </section>
 
   
@@ -50,7 +52,5 @@
     <h2>Mortgage Burden Over Time</h2>
     <canvas id="mortgageChart"></canvas>
   </section>
-
-  <script src="main.js"></script>
 </body>
 </html>

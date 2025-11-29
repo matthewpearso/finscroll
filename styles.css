@@ -41,14 +41,16 @@ background-size: 40px 40px;
 }
 
 
-
 .panel {
-  height: 110vh;
+  height: 80vh;
   padding: 40px;
+  padding-top: 0px;
+  margin-bottom: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .konkhmer-sleokchher-regular {
@@ -94,9 +96,9 @@ h2, p {
 }
 
 canvas {
-  max-width: 700px;
+  max-width: 1500px;
   width: 90%;
-  max-height: 400px;
+  max-height: 700px;
 }
 
 .typewriter-text1 {
@@ -104,7 +106,7 @@ canvas {
   white-space: nowrap; /* Prevents text from wrapping */
   width: 0; /* Starts with zero width */
   border-right: 2px solid #ffffff; /* Cursor style */
-  animation: typing1 2s steps(40, end) forwards, blink-caret .5s step-end alternate;
+  animation: typing1 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
   animation-fill-mode: forwards;
 }
 
@@ -113,7 +115,7 @@ canvas {
   white-space: nowrap; /* Prevents text from wrapping */
   width: 0; /* Starts with zero width */
   border-right: 2px solid #ffffff; /* Cursor style */
-  animation: typing2 2s steps(40, end) forwards, blink-caret .5s step-end alternate;
+  animation: typing1 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
   animation-fill-mode: forwards; 
 }
 
@@ -130,4 +132,9 @@ canvas {
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: #ffffff; } /* Or your desired cursor color */
+}
+
+#wageHousing{
+    position: sticky;
+    top: 8vh;
 }

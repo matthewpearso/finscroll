@@ -8,7 +8,7 @@ Metrics and Graphs to use:
 - college vs non-college unemployment rates
 
 Step 1: Wage vs Housing Line Graph
-(Easiest and foundational)
+Median Household Income and Median Sales Price of Houses Sold
 
 Step 2: Workers Per Household
 (more data cleanup, same chart type)
