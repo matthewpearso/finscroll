@@ -1,10 +1,8 @@
-// filepath: /Users/matthewpearson/Desktop/Davidson Classes/Critical Web Design/sign-of-the-times/src/main.js
 import { initWageHousingChart } from './charts/wages-vs-housing.js';
 
 // The proxy uses the key from the server's .env.
 const FRED_API_KEY = 'PROXY';
 
-// Replace these placeholders with the actual FRED series IDs you want to use.
 const MEDIAN_HOUSEHOLD_INCOME_SERIES = 'MEHOINUSA672N';
 const MEDIAN_SALES_PRICE_SERIES = 'MSPUS';
 
@@ -18,5 +16,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   } catch (err) {
     console.error('Chart init error', err);
+    console.error('Error message:', err?.message);
+    console.error('Stack:', err?.stack);
+    if (err?.message?.includes('Proxy FRED request failed') || err?.message?.includes('Unexpected FRED response')) {
+      console.error('Hint: ensure the dev proxy is running (node src/server.js) and .env contains FRED_API_KEY');
+    }
   }
 });

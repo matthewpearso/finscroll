@@ -131,10 +131,16 @@ canvas {
 
 @keyframes blink-caret {
   from, to { border-color: transparent; }
-  50% { border-color: #ffffff; } /* Or your desired cursor color */
+  50% { border-color: #ffffff; } /* Or desired cursor color */
 }
 
 #wageHousing{
     position: sticky;
     top: 8vh;
+}
+
+#wageHousingChart{
+    padding: 20px;
+    background-color: azure;
+    border-radius: 10px;
 }

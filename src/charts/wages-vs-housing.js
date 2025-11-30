@@ -3,47 +3,49 @@ import { fetchFredSeries } from '../data/fred.js';
 export async function initWageHousingChart({
   canvasId = 'wageHousingChart',
   sectionId = 'wageHousing',
-  fredApiKey,
+  fredApiKey,            // kept for compatibility with callers that pass a value like 'PROXY'
   incomeSeriesId,
   priceSeriesId,
-  start = '',
-  end = ''
 } = {}) {
-  if (!fredApiKey) throw new Error('Provide fredApiKey');
-  if (!incomeSeriesId || !priceSeriesId) throw new Error('Provide series IDs');
+  if (!incomeSeriesId || !priceSeriesId) throw new Error('Provide incomeSeriesId and priceSeriesId');
 
-  // make the chart container sticky and pin while animating
+  // ensure the target section exists and register GSAP plugins early
   const sectionEl = document.getElementById(sectionId);
   if (!sectionEl) throw new Error(`Section element #${sectionId} not found`);
   gsap.registerPlugin(ScrollTrigger);
 
-  // fetch both series
+  // fetch both series 
   const [incomeObs, priceObs] = await Promise.all([
-    fetchFredSeries(incomeSeriesId, fredApiKey, start, end),
-    fetchFredSeries(priceSeriesId, fredApiKey, start, end)
+    fetchFredSeries(incomeSeriesId),
+    fetchFredSeries(priceSeriesId)
   ]);
 
-  // quick debug logs
-  console.log('incomeObs count:', incomeObs.length, incomeObs.slice(0,3));
-  console.log('priceObs count:', priceObs.length, priceObs.slice(0,3));
+  // Use the series observations as-is for Chart.js.
+  // Chart.js accepts data points as { x: <date>, y: <value> } with a time x axis,
+  // DON'T normalize/insert nulls, keep the original observations.
+  const incomeData = incomeObs.map(o => ({ x: o.date, y: o.value }));
+  const priceData = priceObs.map(o => ({ x: o.date, y: o.value }));
 
-  // build date union and map values
-  const dates = Array.from(new Set([...incomeObs, ...priceObs].map(o => o.date))).sort();
-  const incomeMap = new Map(incomeObs.map(o => [o.date, o.value]));
-  const priceMap = new Map(priceObs.map(o => [o.date, o.value]));
+  // build a labels array only for logging / optional use (doesn't change datasets)
+  const labels = Array.from(new Set([
+    ...incomeObs.map(o => o.date),
+    ...priceObs.map(o => o.date)
+  ])).sort();
 
-  const labels = dates;
-  const incomeData = dates.map(d => incomeMap.get(d) ?? null);
-  const priceData = dates.map(d => priceMap.get(d) ?? null);
-
+  // lightweight stats helper for debugging
   const stats = arr => {
-    const nums = arr.filter(v => v != null);
+    const nums = arr.map(p => p.y).filter(v => v != null);
     return { count: nums.length, min: nums.length ? Math.min(...nums) : null, max: nums.length ? Math.max(...nums) : null };
   };
+
+
+
   console.log('incomeData stats', stats(incomeData));
   console.log('priceData stats', stats(priceData));
   console.log('labels length', labels.length);
-
+  console.log(incomeData);
+  console.log(priceData);
+  
   const ctx = document.getElementById(canvasId).getContext('2d');
 
   const chart = new Chart(ctx, {
@@ -59,7 +61,7 @@ export async function initWageHousingChart({
           borderWidth: 2,
           pointRadius: 0,
           tension: 0.3,
-          // no dash for now — simpler and more robust for debugging
+          // no dash for now
           borderDash: [],
           borderDashOffset: 0
         },
@@ -81,22 +83,22 @@ export async function initWageHousingChart({
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { labels: { color: 'white' } },
+        legend: { labels: { color: 'black' } },
         tooltip: { mode: 'index', intersect: false }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: 'white' } },
+        x: { grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: 'black' } },
         y: {
           type: 'linear',
           position: 'left',
           grid: { color: 'rgba(255,255,255,0.08)' },
-          ticks: { color: 'white', callback: v => v ? v.toLocaleString() : v }
+          ticks: { color: 'rgba(0, 119, 255, 1)', callback: v => v ? v.toLocaleString() : v }
         },
         y1: {
           type: 'linear',
           position: 'right',
           grid: { display: false },
-          ticks: { color: 'rgba(255,212,98,0.9)', callback: v => v ? v.toLocaleString() : v }
+          ticks: { color: 'rgba(255, 40, 40, 0.95)', callback: v => v ? v.toLocaleString() : v }
         }
       },
       interaction: { mode: 'index', intersect: false }
@@ -110,7 +112,7 @@ export async function initWageHousingChart({
   canvasEl.style.opacity = 0;
   gsap.to(canvasEl, {
     opacity: 1,
-    duration: 2,
+    duration: 1,
     ease: 'power1.out',
     scrollTrigger: {
       trigger: sectionEl,
