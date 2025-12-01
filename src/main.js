@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       fredApiKey: FRED_API_KEY,
       incomeSeriesId: MEDIAN_HOUSEHOLD_INCOME_SERIES,
       priceSeriesId: MEDIAN_SALES_PRICE_SERIES,
-      start: '1970-01-01'
+      start: '1984-01-01'
     });
   } catch (err) {
     console.error('Chart init error', err);

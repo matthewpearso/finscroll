@@ -75,6 +75,8 @@ h1{
     line-height: normal;
     letter-spacing: -4.8px;
     margin: 0px;
+    display: flex;
+    align-items: center;
 }
 
 h2, p {
@@ -96,7 +98,7 @@ h2, p {
 }
 
 canvas {
-  max-width: 1500px;
+  max-width: 1000px;
   width: 90%;
   max-height: 700px;
 }
@@ -115,18 +117,18 @@ canvas {
   white-space: nowrap; /* Prevents text from wrapping */
   width: 0; /* Starts with zero width */
   border-right: 2px solid #ffffff; /* Cursor style */
-  animation: typing1 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
+  animation: typing2 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
   animation-fill-mode: forwards; 
 }
 
 @keyframes typing1 {
   from { width: 0; }
-  to { width: 69%; } /* Or a specific width like 9em */
+  to { width: 70%; } /* Or a specific width like 9em */
 }
 
 @keyframes typing2 {
   from { width: 0; }
-  to { width: 29%; } /* Or a specific width like 9em */
+  to { width: 30%; } /* Or a specific width like 9em */
 }
 
 @keyframes blink-caret {
@@ -139,8 +141,3 @@ canvas {
     top: 8vh;
 }
 
-#wageHousingChart{
-    padding: 20px;
-    background-color: azure;
-    border-radius: 10px;
-}
