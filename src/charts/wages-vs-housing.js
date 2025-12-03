@@ -1,18 +1,37 @@
-import { fetchFredSeries } from '../data/fred.js';
+
+
+async function fetchFredSeries(seriesId) {
+  
+  const params = new URLSearchParams({ series_id: seriesId });
+  console.log(seriesId, params.toString());
+  //const url = `/api/fred/series/observations?${params.toString()}`;
+  const url = `src/charts/fred_response_${seriesId}.json`; 
+  const res = await fetch(url);
+
+  if (!res.ok) throw new Error(`Proxy FRED request failed: ${res.status}`);
+  const json = await res.json();
+
+  if (!json || !Array.isArray(json.observations)) {
+    throw new Error('Unexpected JSON response format');
+  }
+
+  return json.observations.map(o => ({
+    date: o.date,
+    value: o.value === '.' ? null : Number(o.value)
+  }));
+}
+
+
 
 export async function initWageHousingChart({
-  canvasId = 'wageHousingChart',
-  sectionId = 'wageHousing',
+  canvasId,
+  sectionId,
   fredApiKey,            // kept for compatibility with callers that pass a value like 'PROXY'
   incomeSeriesId,
   priceSeriesId,
 } = {}) {
   if (!incomeSeriesId || !priceSeriesId) throw new Error('Provide incomeSeriesId and priceSeriesId');
 
-  // ensure the target section exists and register GSAP plugins early
-  const sectionEl = document.getElementById(sectionId);
-  if (!sectionEl) throw new Error(`Section element #${sectionId} not found`);
-  gsap.registerPlugin(ScrollTrigger);
 
   // fetch both series 
   const [incomeObs, priceObs] = await Promise.all([
@@ -40,27 +59,18 @@ export async function initWageHousingChart({
 
 
 
-  console.log('incomeData stats', stats(incomeData));
-  console.log('priceData stats', stats(priceData));
-  console.log('labels length', labels.length);
-  console.log(incomeData);
-  console.log(priceData);
   
 
   const ctx = document.getElementById(canvasId).getContext('2d');
 
-  let delayed;
-  let chartInitialized = false;
+  let delayed = false;
+  
+  Chart.defaults.font.family = "'Lora', serif";
+  Chart.defaults.font.color = 'white';
+
 
   // ScrollTrigger that initializes the chart when the section comes into view
-  ScrollTrigger.create({
-    trigger: sectionEl,
-    start: 'top 80%', // trigger when section is 80% into viewport
-    onEnter: () => {
-      if (chartInitialized) return;
-      chartInitialized = true;
-
-      const chart = new Chart(ctx, {
+  const chart = new Chart(ctx, {
         type: 'line',
         data: {
           labels,
@@ -92,6 +102,7 @@ export async function initWageHousingChart({
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          
           animation: {
             duration: 1500,
             easing: 'easeOutQuart',
@@ -101,22 +112,42 @@ export async function initWageHousingChart({
             delay: (context) => {
               let delay = 0;
               if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                delay = context.dataIndex * 2 + context.datasetIndex * 100;
+                const di = typeof context.dataIndex === 'number' ? context.dataIndex : 0;
+                const ds = typeof context.datasetIndex === 'number' ? context.datasetIndex : 0;
+                delay = di * 5 + ds * 100;
               }
               return delay;
             }
           },
+          
           plugins: {
-            legend: { labels: { color: 'black' } },
-            tooltip: { mode: 'index', intersect: false }
+            legend: { labels: { color: 'white' } },
+            tooltip: { mode: 'point', intersect: false }
           },
           scales: {
-            x: { grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: 'black' } },
+            x: { grid: { color: 'rgba(255, 255, 255, 0)' }, 
+                 ticks: { color: 'rgba(255, 255, 255, 1)' }, 
+                 type: 'time', 
+                 time: {displayFormats: {year: 'yyyy' } },
+                 title: {
+                    display: true,
+                    text: 'Year',
+                    color: 'rgba(255, 255, 255, 1)',
+                    font: { size: 20}
+                 }},
             y: {
               type: 'linear',
               position: 'left',
-              grid: { color: 'rgba(255,255,255,0.08)' },
-              ticks: { color: 'rgba(0, 119, 255, 1)', callback: v => v ? v.toLocaleString() : v }
+              grid: { color: 'rgba(255, 255, 255, 0)' },
+              ticks: { color: 'rgba(255, 255, 255, 1)', callback: v => v ? v.toLocaleString() : v },
+              title: {
+                    display: true,
+                    text: ' $ (USD)',
+                    color: 'rgba(255, 255, 255, 1)',
+                    font: { size: 20},
+                    padding: {bottom: 15}
+                    
+                 }
             }
           },
           interaction: { mode: 'index', intersect: false }
@@ -125,16 +156,7 @@ export async function initWageHousingChart({
 
       chart.update();
 
-      // Fade-in animation
-      const canvasEl = document.getElementById(canvasId);
-      canvasEl.style.opacity = 0;
-      gsap.to(canvasEl, {
-        opacity: 1,
-        duration: 1,
-        ease: 'power1.out'
-      });
-    }
-  });
+      
 
-  return { initialized: false }; //chart initializes on scroll
+  return chart; //chart initializes on scroll
 }

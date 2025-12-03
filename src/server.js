@@ -11,6 +11,8 @@ if (!FRED_KEY) {
   process.exit(1);
 }
 
+import fs from 'fs';
+
 app.get('/api/fred/series/observations', async (req, res) => {
   try {
     const params = new URLSearchParams({
@@ -19,8 +21,11 @@ app.get('/api/fred/series/observations', async (req, res) => {
       ...req.query
     });
     const url = `https://api.stlouisfed.org/fred/series/observations?${params.toString()}`;
-    const r = await fetch(url); // Node 18+ has global fetch
+    const r = await fetch(url); 
     const json = await r.json();
+    
+    console.log(params.toString());
+    fs.writeFileSync(`fred_response_${params.series_id}.json`, JSON.stringify(json, null, 2));
     res.json(json);
   } catch (err) {
     console.error('proxy error', err);

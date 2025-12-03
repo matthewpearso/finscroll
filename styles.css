@@ -1,22 +1,22 @@
 body {
 background-size: 40px 40px; 
-    background-image: repeating-linear-gradient(
+    
+background-image: repeating-linear-gradient(
         0deg,
-        #425a8a,
+        #6d85b6,
         #75A3FF 1px, 
         transparent 1px, 
         transparent 40px
     ),
     repeating-linear-gradient(
         -90deg,
-        #425a8a, 
+        #6d85b6, 
         #75A3FF 1px, 
         transparent 1px, 
         transparent 40px 
     );
     
-    /* This is the key property */
-    background-attachment: fixed; /* */
+    background-attachment: fixed;
     
     /* Ensure the body takes at least the full screen height */
     min-height: 100vh; 
@@ -24,7 +24,6 @@ background-size: 40px 40px;
 
 
   margin: 0;
-  font-family: Arial, sans-serif;
   scroll-behavior: smooth;
   background-color: #75A3FF;
 }
@@ -52,6 +51,7 @@ background-size: 40px 40px;
   align-items: center;
   position: relative;
 }
+
 
 .konkhmer-sleokchher-regular {
   font-family: "Konkhmer Sleokchher", system-ui;
@@ -134,10 +134,5 @@ canvas {
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: #ffffff; } /* Or desired cursor color */
-}
-
-#wageHousing{
-    position: sticky;
-    top: 8vh;
 }
 
