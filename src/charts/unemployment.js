@@ -1,12 +1,44 @@
 
 
-export async function initWageHousingChart({
+export async function initUnemploymentChart({
   canvasId,
   sectionId,
   fredApiKey,            // kept for compatibility with callers that pass a value like 'PROXY'
-  incomeData,
-  priceData,
+  collegeSeriesId,
+  overallSeriesId,
 } = {}) {
+  if (!collegeSeriesId || !overallSeriesId) throw new Error('Provide collegeSeriesId and overallSeriesId');
+
+
+  // fetch both series 
+  const [collegeObs, overallObs] = await Promise.all([
+    fetchFredSeries(collegeSeriesId),
+    fetchFredSeries(overallSeriesId)
+  ]);
+
+  console.log(collegeObs)
+
+  // Use the series observations as-is for Chart.js.
+  // Chart.js accepts data points as { x: <date>, y: <value> } with a time x axis,
+  // DON'T normalize/insert nulls, keep the original observations.
+  const collegeData = collegeObs.map(o => ({ x: o.date, y: o.value }));
+  const overallData = overallObs.map(o => ({ x: o.date, y: o.value }));
+
+  // build a labels array only for logging / optional use (doesn't change datasets)
+  const labels = Array.from(new Set([
+    ...collegeObs.map(o => o.date),
+    ...overallObs.map(o => o.date)
+  ])).sort();
+
+  // stats helper for debugging
+  const stats = arr => {
+    const nums = arr.map(p => p.y).filter(v => v != null);
+    return { count: nums.length, min: nums.length ? Math.min(...nums) : null, max: nums.length ? Math.max(...nums) : null };
+  };
+
+
+
+  
 
   const ctx = document.getElementById(canvasId).getContext('2d');
 
@@ -15,17 +47,15 @@ export async function initWageHousingChart({
   Chart.defaults.font.family = "'Lora', serif";
   Chart.defaults.font.color = 'white';
 
-  console.log(incomeData);
-  console.log(priceData);
 
-  // ScrollTrigger that initializes the chart when the section comes into view
   const chart = new Chart(ctx, {
         type: 'line',
         data: {
+          labels,
           datasets: [
             {
-              label: 'Median Household Income',
-              data: incomeData,
+              label: 'College Graduates Unemployment Rate',
+              data: collegeData,
               borderColor: 'rgba(0, 119, 255, 1)',
               backgroundColor: 'rgba(0,0,0,0)',
               borderWidth: 2,
@@ -35,8 +65,8 @@ export async function initWageHousingChart({
               borderDashOffset: 0
             },
             {
-              label: 'Median Sales Price of Houses Sold',
-              data: priceData,
+              label: 'Overall Unemployment Rate',
+              data: overallData,
               borderColor: 'rgba(255, 40, 40, 0.95)',
               backgroundColor: 'rgba(255,212,98,0.04)',
               borderWidth: 2,

@@ -1,5 +1,9 @@
 {
   "scripts": {
-    "start": "node src/server.js"
+    "get": "nodemon --ignore data/ src/index.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.11"
   }
 }
