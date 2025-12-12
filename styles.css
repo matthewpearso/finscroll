@@ -18,17 +18,13 @@ body {
 
   background-attachment: fixed;
 
-  /* Ensure the body takes at least the full screen height */
   min-height: 100vh;
-  margin: 0; /* Remove default body margin */
+  margin: 0; 
 
   scroll-behavior: smooth;
   background-color: #75a3ff;
 }
 
-/* Apply the grid directly to the body element */
-
-/* Style your content container to sit above the background */
 #content-container {
   position: relative;
   z-index: 1; /* Ensures content is above the background */
@@ -37,7 +33,7 @@ body {
     0,
     0,
     0.7
-  ); /* Semi-transparent overlay for readability */
+  ); 
   padding: 20px;
   color: white;
 }
@@ -152,7 +148,6 @@ h2 {
   text-align: center;
 }
 
-
 #wageHousing{
   height: 80vh;
   padding-left: 50px;
@@ -166,3 +161,4 @@ h2 {
   padding-right: 60px;
   margin-bottom: 20vh;
 }
+
