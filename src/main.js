@@ -1,4 +1,5 @@
 import { initWageHousingChart } from "./charts/wages-vs-housing.js";
+import { initUnemploymentChart } from "./charts/unemployment.js";
 
 //(async () => {
   
@@ -31,6 +32,9 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
   let [data_MEHOINUSA672N, labels_MEHOINUSA672N] = await getSeries("MEHOINUSA672N");
   console.log(data_MSPUS);
 
+  let [data_UNRATE, labels_UNRATE] = await getSeries("UNRATE");
+  let [data_CGBD2024, labels_CGBD2024] = await getSeries("CGBD2024");
+
   try{
   // The proxy uses the key from the server's .env.
   const FRED_API_KEY = "PROXY";
@@ -43,17 +47,17 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
     const section1 = document.getElementById("wageHousing");
     if (!section1) throw new Error(`Section element #${sectionId} not found`);
     gsap.registerPlugin(ScrollTrigger);
-    let chartInitialized = false;
+    let section1Initialized = false;
 
     ScrollTrigger.create({
       trigger: section1,
       start: "top 80%", // trigger when section is 80% into viewport
       pin: true,
-      start: "top top+=60vh",
+      start: "top top+=30px",
       end: "+=1800",
       onEnter: () => {
-        if (chartInitialized) return;
-        chartInitialized = true;
+        if (section1Initialized) return;
+        section1Initialized = true;
         
         console.log(data_MEHOINUSA672N);
 
@@ -70,14 +74,6 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
           console.error("Chart init error", err);
           console.error("Error message:", err?.message);
           console.error("Stack:", err?.stack);
-          if (
-            err?.message?.includes("Proxy FRED request failed") ||
-            err?.message?.includes("Unexpected FRED response")
-          ) {
-            console.error(
-              "Hint: ensure the dev proxy is running (node src/server.js) and .env contains FRED_API_KEY"
-            );
-          }
         }
 
         // Fade-in animation
@@ -94,21 +90,23 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
     const section2 = document.getElementById("unemploymentRates");
     if (!section2) throw new Error(`Section element #${sectionId} not found`);
 
+    let section2Initialized = false;
+
     ScrollTrigger.create({
       trigger: section2,
       start: "top 80%", // trigger when section is 80% into viewport
       pin: true,
-      start: "top top+=40vh",
+      start: "top top+=30px",
       end: "+=2500",
       onEnter: () => {
-        if (chartInitialized) return;
-        chartInitialized = true;
+        if (section2Initialized) return;
+        section2Initialized = true;
 
         try {
           initUnemploymentChart({
             fredApiKey: FRED_API_KEY,
-            collegeSeriesId: "CGBD2024",
-            overallSeriesId: "UNRATE",
+            collegeSeries: data_CGBD2024,
+            overallSeries: data_UNRATE,
             canvasId: "unemploymentChart",
             sectionId: "unemploymentRates",
           });
@@ -116,14 +114,6 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
           console.error("Chart init error", err);
           console.error("Error message:", err?.message);
           console.error("Stack:", err?.stack);
-          if (
-            err?.message?.includes("Proxy FRED request failed") ||
-            err?.message?.includes("Unexpected FRED response")
-          ) {
-            console.error(
-              "Hint: ensure the dev proxy is running (node src/server.js) and .env contains FRED_API_KEY"
-            );
-          }
         }
 
         // Fade-in animation
@@ -144,7 +134,7 @@ import { initWageHousingChart } from "./charts/wages-vs-housing.js";
       trigger: section3,
       start: "top 80%", // trigger when section is 80% into viewport
       pin: true,
-      start: "top top+=40vh",
+      start: "top top+=30px",
       end: "+=2500",
       onEnter: () => {
         if (chartInitialized) return;

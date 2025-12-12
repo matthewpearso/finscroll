@@ -1,64 +1,60 @@
 body {
-background-size: 40px 40px; 
-    
-background-image: repeating-linear-gradient(
-        0deg,
-        #6d85b6,
-        #75A3FF 1px, 
-        transparent 1px, 
-        transparent 40px
+  background-size: 40px 40px;
+
+  background-image: repeating-linear-gradient(
+      0deg,
+      #6d85b6,
+      #75a3ff 1px,
+      transparent 1px,
+      transparent 40px
     ),
     repeating-linear-gradient(
-        -90deg,
-        #6d85b6, 
-        #75A3FF 1px, 
-        transparent 1px, 
-        transparent 40px 
+      -90deg,
+      #6d85b6,
+      #75a3ff 1px,
+      transparent 1px,
+      transparent 40px
     );
-    
-    background-attachment: fixed;
-    
-    /* Ensure the body takes at least the full screen height */
-    min-height: 100vh; 
-    margin: 0; /* Remove default body margin */
 
+  background-attachment: fixed;
 
-  margin: 0;
+  /* Ensure the body takes at least the full screen height */
+  min-height: 100vh;
+  margin: 0; /* Remove default body margin */
+
   scroll-behavior: smooth;
-  background-color: #75A3FF;
+  background-color: #75a3ff;
 }
 
 /* Apply the grid directly to the body element */
 
 /* Style your content container to sit above the background */
 #content-container {
-    position: relative;
-    z-index: 1; /* Ensures content is above the background */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay for readability */
-    padding: 20px;
-    color: white;
+  position: relative;
+  z-index: 1; /* Ensures content is above the background */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Semi-transparent overlay for readability */
+  padding: 20px;
+  color: white;
 }
 
-
 .panel {
-  height: 80vh;
-  padding: 40px;
-  padding-top: 0px;
-  margin-bottom: 40vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: relative;
 }
-
 
 .konkhmer-sleokchher-regular {
   font-family: "Konkhmer Sleokchher", system-ui;
   font-weight: 400;
   font-style: normal;
 }
-
 
 .lora-serif {
   font-family: "Lora", serif;
@@ -67,42 +63,34 @@ background-image: repeating-linear-gradient(
   font-style: normal;
 }
 
-h1{
-    margin-bottom: 0px;
-    align-items: center;
-    flex-shrink: 1;
+#intro {
+  margin-bottom: 40vh;
+  padding-top: 15vh;
 }
 
-h2, p {
-    color: white;
-    font-family: "Lora", serif;
-    font-size: 40px;
-    margin: 0px;
-    font-weight: 400;
+h1 {
+  margin-bottom: 0px;
+  align-items: center;
+  flex-shrink: 1;
 }
 
-.subheader {
-    margin-top: 0px;
-    font-size: 40px;
+h2,
+p {
+  color: white;
+  font-family: "Lora", serif;
+  font-size: 40px;
+  margin: 0px;
+  font-weight: 400;
 }
 
-.author{
-    margin-top: 10px;
-    font-size: 24px;
-}
-
-canvas {
-  max-width: 1000px;
-  width: 90%;
-  max-height: 700px;
-}
 
 .typewriter-text1 {
   overflow: hidden; /* Hides text beyond the current width */
   white-space: nowrap; /* Prevents text from wrapping */
   width: 0; /* Starts with zero width */
   border-right: 2px solid #ffffff; /* Cursor style */
-  animation: typing1 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
+  animation: typing1 2s steps(40, end) forwards,
+    blink-caret 1s step-end alternate;
   animation-fill-mode: forwards;
 }
 
@@ -111,22 +99,65 @@ canvas {
   white-space: nowrap; /* Prevents text from wrapping */
   width: 0; /* Starts with zero width */
   border-right: 2px solid #ffffff; /* Cursor style */
-  animation: typing2 2s steps(40, end) forwards, blink-caret 1s step-end alternate;
-  animation-fill-mode: forwards; 
+  animation: typing2 2s steps(40, end) forwards,
+    blink-caret 1s step-end alternate;
+  animation-fill-mode: forwards;
 }
 
 @keyframes typing1 {
-  from { width: 0; }
-  to { width: 70%; } /* Or a specific width like 9em */
+  from {
+    width: 0;
+  }
+  to {
+    width: 70%;
+  } /* Or a specific width like 9em */
 }
 
 @keyframes typing2 {
-  from { width: 0; }
-  to { width: 30%; } /* Or a specific width like 9em */
+  from {
+    width: 0;
+  }
+  to {
+    width: 30%;
+  } /* Or a specific width like 9em */
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #ffffff; } /* Or desired cursor color */
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ffffff;
+  } /* Or desired cursor color */
 }
 
+.subheader {
+  margin-top: 0px;
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  animation-delay: 1s;
+}
+
+.author {
+  margin-top: 10px;
+  font-size: 24px;
+  animation-delay: 3s; 
+  text-align: center;
+}
+
+
+#wageHousing{
+  height: 80vh;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-bottom: 20vh;
+}
+
+#unemploymentRates{
+  height: 80vh;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-bottom: 20vh;
+}

@@ -20,7 +20,7 @@ app.get('/api/fred/series/observations', async (req, res) => {
       file_type: 'json',
       ...req.query
     });
-    const url = `https://api.stlouisfed.org/fred/series/observations?${params.toString()}`;
+    const url = `https://api.stlouisfed.org/fred/series/observations?${params.toString()}&api_key=${FRED_KEY}&file_type=json`;
     const r = await fetch(url); 
     const json = await r.json();
     
