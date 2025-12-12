@@ -44,20 +44,20 @@ import { initUnemploymentChart } from "./charts/unemployment.js";
 
   //document.addEventListener("DOMContentLoaded", async () => {
     
-    const section1 = document.getElementById("wageHousing");
-    if (!section1) throw new Error(`Section element #${sectionId} not found`);
+    const wageHousing = document.getElementById("wageHousing");
+    if (!wageHousing) throw new Error(`Section element #${sectionId} not found`);
     gsap.registerPlugin(ScrollTrigger);
-    let section1Initialized = false;
+    let wageHousingInitialized = false;
 
     ScrollTrigger.create({
-      trigger: section1,
+      trigger: wageHousing,
       start: "top 80%", // trigger when section is 80% into viewport
       pin: true,
       start: "top top+=30px",
       end: "+=1800",
       onEnter: () => {
-        if (section1Initialized) return;
-        section1Initialized = true;
+        if (wageHousingInitialized) return;
+        wageHousingInitialized = true;
         
         console.log(data_MEHOINUSA672N);
 
@@ -87,20 +87,20 @@ import { initUnemploymentChart } from "./charts/unemployment.js";
       },
     });
 
-    const section2 = document.getElementById("unemploymentRates");
-    if (!section2) throw new Error(`Section element #${sectionId} not found`);
+    const unemploymentRates = document.getElementById("unemploymentRates");
+    if (!unemploymentRates) throw new Error(`Section element #${sectionId} not found`);
 
-    let section2Initialized = false;
+    let unemploymentInitialized = false;
 
     ScrollTrigger.create({
-      trigger: section2,
+      trigger: unemploymentRates,
       start: "top 80%", // trigger when section is 80% into viewport
       pin: true,
       start: "top top+=30px",
-      end: "+=2500",
+      end: "+=1800",
       onEnter: () => {
-        if (section2Initialized) return;
-        section2Initialized = true;
+        if (unemploymentInitialized) return;
+        unemploymentInitialized = true;
 
         try {
           initUnemploymentChart({
@@ -129,7 +129,7 @@ import { initUnemploymentChart } from "./charts/unemployment.js";
 
     const section3 = document.getElementById("mortgageBurden");
     if (!section3) throw new Error(`Section element #${sectionId} not found`);
-
+    let section3Initialized = false;
     ScrollTrigger.create({
       trigger: section3,
       start: "top 80%", // trigger when section is 80% into viewport
@@ -137,8 +137,8 @@ import { initUnemploymentChart } from "./charts/unemployment.js";
       start: "top top+=30px",
       end: "+=2500",
       onEnter: () => {
-        if (chartInitialized) return;
-        chartInitialized = true;
+        if (section3Initialized) return;
+        section3Initialized = true;
       },
     });
   //});

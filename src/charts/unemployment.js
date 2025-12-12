@@ -27,13 +27,13 @@ export async function initUnemploymentChart({
         data: {
           datasets: [
             {
-              label: 'College Graduates Unemployment Rate',
+              label: 'Unemployment Rate for College Graduates Age 20–24',
               data: collegeData,
               borderColor: 'rgba(0, 119, 255, 1)',
               backgroundColor: 'rgba(0,0,0,0)',
               borderWidth: 2,
               pointRadius: 0,
-              tension: 0,
+              tension: 0.9,
               borderDash: [],
               borderDashOffset: 0
             },
@@ -93,7 +93,7 @@ export async function initUnemploymentChart({
               ticks: { color: 'rgba(255, 255, 255, 1)', callback: v => v ? v.toLocaleString() : v },
               title: {
                     display: true,
-                    text: ' Rate (%)',
+                    text: ' Rate of Unemployment (%)',
                     color: 'rgba(255, 255, 255, 1)',
                     font: { size: 20},
                     padding: {bottom: 15}
