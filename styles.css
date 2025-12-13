@@ -19,7 +19,7 @@ body {
   background-attachment: fixed;
 
   min-height: 100vh;
-  margin: 0; 
+  margin: 0;
 
   scroll-behavior: smooth;
   background-color: #75a3ff;
@@ -28,23 +28,18 @@ body {
 #content-container {
   position: relative;
   z-index: 1; /* Ensures content is above the background */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ); 
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
   color: white;
 }
 
 .panel {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: 5vh;
+  margin-bottom: 60vh;
 }
 
 .konkhmer-sleokchher-regular {
@@ -83,7 +78,6 @@ p {
 h2 {
   margin-bottom: 20px;
 }
-
 
 .typewriter-text1 {
   overflow: hidden; /* Hides text beyond the current width */
@@ -144,21 +138,53 @@ h2 {
 .author {
   margin-top: 10px;
   font-size: 24px;
-  animation-delay: 3s; 
+  animation-delay: 3s;
   text-align: center;
 }
 
-#wageHousing{
-  height: 80vh;
+#wageHousing {
   padding-left: 50px;
   padding-right: 60px;
-  margin-bottom: 20vh;
 }
 
-#unemploymentRates{
-  height: 80vh;
+#unemploymentRates {
   padding-left: 50px;
   padding-right: 60px;
-  margin-bottom: 20vh;
 }
 
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Lora", serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-radius: 30px;
+  fill: rgba(121, 207, 255, 0.2);
+  stroke-width: 1px;
+  stroke: #92c4ff;
+  box-shadow: 0 0 20px 0 #c9ebff85 inset;
+  backdrop-filter: blur(10px);
+}
+
+.chart-overlay p {
+  margin: 10px 0;
+  opacity: 0.9;
+  font-size: 15px;
+}

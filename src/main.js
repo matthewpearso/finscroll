@@ -26,6 +26,11 @@ async function getSeries(seriesId) {
   return [data, labels];
 }
 
+
+
+
+
+
 let [data_MSPUS, labels_MSPUS] = await getSeries("MSPUS");
 let [data_MEHOINUSA672N, labels_MEHOINUSA672N] = await getSeries(
   "MEHOINUSA672N"
@@ -34,6 +39,12 @@ console.log(data_MSPUS);
 
 let [data_UNRATE, labels_UNRATE] = await getSeries("UNRATE");
 let [data_CGBD2024, labels_CGBD2024] = await getSeries("CGBD2024");
+
+
+
+
+
+
 
 try {
   // The proxy uses the key from the server's .env.
@@ -54,7 +65,7 @@ try {
     start: "top 80%", // trigger when section is 80% into viewport
     pin: true,
     start: "top top+=30px",
-    end: "+=1800",
+    end: "+=1000",
     onEnter: () => {
       if (wageHousingInitialized) return;
       wageHousingInitialized = true;
@@ -76,7 +87,7 @@ try {
         console.error("Stack:", err?.stack);
       }
 
-      // Fade-in animation
+      // Fade-in animation for chart
       const canvasEl = document.getElementById("wageHousingChart");
       canvasEl.style.opacity = 0;
       gsap.to(canvasEl, {
@@ -84,8 +95,40 @@ try {
         duration: 1,
         ease: "power1.out",
       });
+
+      // Fade-in animation for overlay text
+      const overlay = wageHousing.querySelector(".chart-overlay");
+      gsap.set(overlay, { opacity: 0, y: 300 }); // Ensure it's hidden initially
+      gsap.to(overlay, {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      });
     },
   });
+
+
+
+  // Overlay scroll animation
+  gsap.set(wageHousing.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
+  gsap.to(wageHousing.querySelector(".chart-overlay"), {
+    y: 180, // Adjust to control how far the text scrolls up
+    ease: "circle",
+    scrollTrigger: {
+      trigger: wageHousing,
+      start: "top 50%", // when the top of the trigger hits the bottom of the viewport
+      end: "+=1200",
+      scrub: true,
+    },
+  });
+
+
+
+
+
+
+
+
 
   const unemploymentRates = document.getElementById("unemploymentRates");
   if (!unemploymentRates)
@@ -127,8 +170,14 @@ try {
         ease: "power1.out",
       });
     },
-    
   });
+
+
+
+
+
+
+
 
   const section3 = document.getElementById("mortgageBurden");
   if (!section3) throw new Error(`Section element #${sectionId} not found`);
