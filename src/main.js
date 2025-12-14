@@ -1,7 +1,8 @@
 import { initWageHousingChart } from "./charts/wages-vs-housing.js";
 import { initUnemploymentChart } from "./charts/unemployment.js";
+import { initDebtChart } from "./charts/debt.js";
 
-//(async () => {
+
 
 async function fetchData(url) {
   //(async () => {
@@ -34,6 +35,11 @@ console.log(data_MSPUS);
 
 let [data_UNRATE, labels_UNRATE] = await getSeries("UNRATE");
 let [data_CGBD2024, labels_CGBD2024] = await getSeries("CGBD2024");
+
+let[data_SLOAS, labels_SLOAS] = await getSeries("SLOAS");
+let[data_REVOLSL, labels_REVOLSL] = await getSeries("REVOLSL");
+let[data_MVLOAS, labels_MVLOAS] = await getSeries("MVLOAS");
+let[data_HHMSDODNS, labels_HHMSDODNS] = await getSeries("HHMSDODNS");
 
 try {
   // The proxy uses the key from the server's .env.
@@ -99,7 +105,7 @@ try {
   // Overlay scroll animation
   gsap.set(wageHousing.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
   gsap.to(wageHousing.querySelector(".chart-overlay"), {
-    y: 180, // Adjust to control how far the text scrolls up
+    y: 200, // Adjust to control how far the text scrolls up
     ease: "circle",
     scrollTrigger: {
       trigger: wageHousing,
@@ -163,7 +169,7 @@ try {
   // Overlay scroll animation
   gsap.set(unemploymentRates.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
   gsap.to(unemploymentRates.querySelector(".chart-overlay"), {
-    y: 180, // Adjust to control how far the text scrolls up
+    y: 200, // Adjust to control how far the text scrolls up
     ease: "circle",
     scrollTrigger: {
       trigger: unemploymentRates,
@@ -179,9 +185,11 @@ try {
 
 
 
-  const section3 = document.getElementById("mortgageBurden");
+  const section3 = document.getElementById("debtLevels");
   if (!section3) throw new Error(`Section element #${sectionId} not found`);
+  
   let section3Initialized = false;
+  
   ScrollTrigger.create({
     trigger: section3,
     start: "top 80%", // trigger when section is 80% into viewport
@@ -191,10 +199,59 @@ try {
     onEnter: () => {
       if (section3Initialized) return;
       section3Initialized = true;
+
+      try {
+        initDebtChart({
+          fredApiKey: FRED_API_KEY,
+          studentDebt: data_SLOAS,
+          creditCardDebt: data_REVOLSL,
+          carDebt: data_MVLOAS,
+          mortgageDebt: data_HHMSDODNS,
+          canvasId: "debtChart",
+          sectionId: "debtLevels",
+        });
+      } 
+      catch (err) {
+        console.error("Chart init error", err);
+        console.error("Error message:", err?.message);
+        console.error("Stack:", err?.stack);
+      }
+
+      // Fade-in animation
+      const canvasEl = document.getElementById("unemploymentChart");
+      canvasEl.style.opacity = 0;
+      gsap.to(canvasEl, {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      });
+
+      // Fade-in animation for overlay text
+      const overlay = unemploymentRates.querySelector(".chart-overlay");
+      gsap.set(overlay, { opacity: 0, y: 300 }); // Ensure it's hidden initially
+      gsap.to(overlay, {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      });
     },
   });
-  //});
-} catch (err) {
+
+  // Overlay scroll animation
+  gsap.set(unemploymentRates.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
+  gsap.to(unemploymentRates.querySelector(".chart-overlay"), {
+    y: 200, // Adjust to control how far the text scrolls up
+    ease: "circle",
+    scrollTrigger: {
+      trigger: unemploymentRates,
+      start: "top 50%", // when the top of the trigger hits the bottom of the viewport
+      end: "+=1200",
+      scrub: true,
+    },
+  });
+
+} 
+
+catch (err) {
   console.error("Main init error", err);
 }
-//})();
