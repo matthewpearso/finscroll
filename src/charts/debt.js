@@ -17,10 +17,7 @@ export async function initDebtChart({
   Chart.defaults.font.color = 'white';
 
   
-  console.log(studentDebt);
-  console.log(creditCardDebt);
-  console.log(carDebt);
-  console.log(mortgageDebt);
+  
 
   const chart = new Chart(ctx, {
         type: 'line',

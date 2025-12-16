@@ -15,8 +15,6 @@ export async function initWageHousingChart({
   Chart.defaults.font.family = "'Lora', serif";
   Chart.defaults.font.color = 'white';
 
-  console.log(incomeData);
-  console.log(priceData);
 
   // ScrollTrigger that initializes the chart when the section comes into view
   const chart = new Chart(ctx, {

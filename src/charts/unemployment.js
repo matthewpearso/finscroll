@@ -19,8 +19,7 @@ export async function initUnemploymentChart({
   const collegeData = collegeSeries;
   const overallData = overallSeries;
   
-  console.log(collegeData);
-  console.log(overallData);
+
 
   const chart = new Chart(ctx, {
         type: 'line',

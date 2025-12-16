@@ -197,14 +197,17 @@ h2 {
 
 .glass {
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  
   color: white;
   font-family: "Lora", serif;
   padding: 50px;
+  max-width: 1200px;
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 10%;
   border-radius: 30px;
   fill: rgba(121, 207, 255, 0.2);
   stroke-width: 1px;

@@ -31,7 +31,7 @@ let [data_MSPUS, labels_MSPUS] = await getSeries("MSPUS");
 let [data_MEHOINUSA672N, labels_MEHOINUSA672N] = await getSeries(
   "MEHOINUSA672N"
 );
-console.log(data_MSPUS);
+
 
 let [data_UNRATE, labels_UNRATE] = await getSeries("UNRATE");
 let [data_CGBD2024, labels_CGBD2024] = await getSeries("CGBD2024");
@@ -65,7 +65,7 @@ try {
       if (wageHousingInitialized) return;
       wageHousingInitialized = true;
 
-      console.log(data_MEHOINUSA672N);
+      
 
       try {
         initWageHousingChart({
