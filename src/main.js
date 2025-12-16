@@ -218,7 +218,7 @@ try {
       }
 
       // Fade-in animation
-      const canvasEl = document.getElementById("unemploymentChart");
+      const canvasEl = document.getElementById("debtLevels");
       canvasEl.style.opacity = 0;
       gsap.to(canvasEl, {
         opacity: 1,
@@ -227,7 +227,7 @@ try {
       });
 
       // Fade-in animation for overlay text
-      const overlay = unemploymentRates.querySelector(".chart-overlay");
+      const overlay = debtLevels.querySelector(".chart-overlay");
       gsap.set(overlay, { opacity: 0, y: 300 }); // Ensure it's hidden initially
       gsap.to(overlay, {
         opacity: 1,
@@ -238,12 +238,12 @@ try {
   });
 
   // Overlay scroll animation
-  gsap.set(unemploymentRates.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
-  gsap.to(unemploymentRates.querySelector(".chart-overlay"), {
+  gsap.set(debtLevels.querySelector(".chart-overlay"), { y: 2000 }); // Start position below initial position
+  gsap.to(debtLevels.querySelector(".chart-overlay"), {
     y: 200, // Adjust to control how far the text scrolls up
     ease: "circle",
     scrollTrigger: {
-      trigger: unemploymentRates,
+      trigger: debtLevels,
       start: "top 50%", // when the top of the trigger hits the bottom of the viewport
       end: "+=1200",
       scrub: true,
