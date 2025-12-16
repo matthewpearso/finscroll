@@ -59,7 +59,7 @@ try {
     trigger: wageHousing,
     start: "top 80%", // trigger when section is 80% into viewport
     pin: true,
-    start: "top top+=30px",
+    start: "top top+=50px",
     end: "+=1000",
     onEnter: () => {
       if (wageHousingInitialized) return;
@@ -125,7 +125,7 @@ try {
     trigger: unemploymentRates,
     start: "top 80%", // trigger when section is 80% into viewport
     pin: true,
-    start: "top top+=30px",
+    start: "top top+=50px",
     end: "+=1800",
     anticipatePin: 0.5,
     onEnter: () => {
@@ -194,7 +194,7 @@ try {
     trigger: section3,
     start: "top 80%", // trigger when section is 80% into viewport
     pin: true,
-    start: "top top+=30px",
+    start: "top top+=50px",
     end: "+=2500",
     onEnter: () => {
       if (section3Initialized) return;
